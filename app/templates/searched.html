@@ -28,7 +28,6 @@
             align-items: flex-start;
             padding: 40px;
             margin: 10px;
-            border: 1px solid rgba(0, 0, 0, 0.5);
         }
         .details{
             display: flex;
@@ -37,17 +36,20 @@
         .top{
             display: flex;
             align-items: center;
-            justify-content: space-evenly;
+            padding: 0 80px;
+            justify-content: space-between;
         }
     </style>
 </head>
 <body>
     <div class="top">
-        <h1>Hi {{curr_user}}</h1>
-        <form action="/logout" method="post">
-            {% csrf_token %}
-            <button type="submit">Logout?</button>
-        </form>
+        <div class="left" style="display: flex;column-gap:20px">
+            <h1>Hi {{curr_user}}</h1>
+            <form action="/logout" method="post">
+                {% csrf_token %}
+                <button type="submit">Logout?</button>
+            </form>
+        </div>
         <form class="searchbar" method="post" action="/search" >
             {% csrf_token %}
             <input class="searchbar" type="search" name="search"> 
@@ -55,7 +57,7 @@
         </form>
     </div>
     <div class="container">
-        {% for i in items %}
+        {% for i in name %}
         <div class="book">
             <img src="{{i.picture}}" style="width: 80%;height: 250px;object-fit: contain;"></img>
             <div class="details">
@@ -64,6 +66,8 @@
                 <h4 style="color: gray;">{{i.author}}</h4>
             </div>
         </div>
+        {% empty %}
+        <h1>No results found</h1>
         {% endfor %}
     </div>
 </body>

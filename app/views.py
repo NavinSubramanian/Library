@@ -85,19 +85,19 @@ def search(request):
     if request.method=="POST":  
         search = request.POST.get('search')
         
-        items1 = Book.objects.filter(name__icontains=search).values_list()
-        items2 = Book.objects.filter(name__icontains=search).values_list()
-        items3 = Book.objects.filter(name__icontains=search).values_list()
+        items1 = Book.objects.filter(name__icontains=search).values()
+        items2 = Book.objects.filter(name__icontains=search).values()
+        items3 = Book.objects.filter(name__icontains=search).values()
 
         values = []
-        for i in items1[0]:
-            if i[1] not in values:
+        for i in items1:
+            if i not in values:
                 values.append(i)
-        for i in items2[0]:
-            if i[1] not in values:
+        for i in items2:
+            if i not in values:
                 values.append(i)
-        for i in items3[0]:
-            if i[1] not in values:
+        for i in items3:
+            if i not in values:
                 values.append(i)
 
         print(values)
