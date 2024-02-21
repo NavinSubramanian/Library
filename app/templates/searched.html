@@ -61,9 +61,9 @@
         <div class="book">
             <img src="{{i.picture}}" style="width: 80%;height: 250px;object-fit: contain;"></img>
             <div class="details">
-                <h2>{{i.name}}</h2><br>
-                <h4>Genre:{{i.genre}}</h4>
-                <h4 style="color: gray;">{{i.author}}</h4>
+                <h2 style="margin: 0;border-bottom:1px solid">{{i.name}}</h2>
+                <h5 style="color: gray;font-weight:300">{{i.author}}</h5>
+                <h4 style="font-weight: 400;">Genre:<b>  {{i.genre}}</b></h4>
             </div>
         </div>
         {% empty %}

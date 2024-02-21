@@ -34,6 +34,14 @@ def login(request):
         if(name == "admin" and password == "123"):
             loggedin=True
             curr_user = 'admin'
+            # book = Book.objects.all().values()
+
+            # context = {
+            #     'book':book,
+            # }
+            # print(book)
+            # return render(request,'admin.html',context)
+
             return redirect('/admin')
 
         if User.objects.filter(username=name).exists():
@@ -62,7 +70,18 @@ def dashboard(request):
 def admin(request):
     if(loggedin==False):
         redirect('/home')
-    return render(request,'admin.html')
+    
+    if request.method == "POST":
+        answer = request.POST['dropdown']
+        Book.objects.filter(id=answer).delete()
+
+
+    book = Book.objects.all().values()
+
+    context = {
+        'book':book
+    }
+    return render(request,'admin.html',context)
 
 def logout(request):
     global loggedin
